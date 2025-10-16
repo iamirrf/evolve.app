@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        /* CSS Reset and Global Styles */
+        /* CSS is identical across all pages for consistency */
         :root {
             --primary-color: #0A2463;
             --secondary-color: #3E92CC;
@@ -23,307 +23,54 @@
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.2);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Lexend', sans-serif;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, var(--primary-color), #1b3d8d, #0A2463);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Utility and Container Styles */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        section {
-            padding: 6rem 0;
-        }
-        
-        h1, h2, h3 {
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Lexend', sans-serif; background-color: var(--primary-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(45deg, var(--primary-color), #1b3d8d, #0A2463); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 6rem 0; }
+        h1, h2, h3 { font-weight: 600; color: var(--accent-color); }
         h1 { font-size: 3rem; margin-bottom: 1rem; }
         h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
         p { font-size: 1.1rem; margin-bottom: 1rem; }
         a { color: var(--secondary-color); text-decoration: none; }
-
-        /* Header & Navigation */
-        .header {
-            background: rgba(10, 36, 99, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            width: 40px;
-            margin-right: 10px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: var(--accent-color);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(62, 146, 204, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-color);
-            border: 2px solid var(--secondary-color);
-            margin-left: 1rem;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 60px; /* Offset for header */
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            line-height: 1.2;
-        }
-
-        .hero p {
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            font-weight: 300;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-content img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            justify-self: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        /* Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Industries & Testimonials */
-        .industries-grid, .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .industry-card, .testimonial-card {
-            background: var(--glass-bg);
-            border-radius: 15px;
-            padding: 2rem;
-        }
-        
-        .testimonial-card p.author {
-            font-weight: bold;
-            margin-top: 1rem;
-            color: var(--secondary-color);
-        }
-
-        /* Legal Pages Sections */
-        .legal-content {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 3rem;
-            border-radius: 15px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .legal-content h2 {
-            margin-bottom: 2rem;
-        }
-
-        .legal-content h3 {
-            font-size: 1.4rem;
-            color: var(--secondary-color);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .legal-content p, .legal-content li {
-            font-size: 1rem;
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .legal-content ul, .legal-content ol {
-            padding-left: 20px;
-        }
-
-        /* Footer */
-        .footer {
-            background: #061a40;
-            text-align: center;
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Responsive Design */
+        .header { background: rgba(10, 36, 99, 0.8); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; padding: 1rem 0; border-bottom: 1px solid var(--glass-border); }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--accent-color); display: flex; align-items: center; }
+        .logo img { width: 40px; margin-right: 10px; }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { color: var(--text-color); transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--secondary-color); }
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .btn-primary { background-color: var(--secondary-color); color: var(--accent-color); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(62, 146, 204, 0.4); }
+        .btn-secondary { background: transparent; color: var(--accent-color); border: 2px solid var(--secondary-color); margin-left: 1rem; }
+        .btn-secondary:hover { background: var(--secondary-color); }
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 60px; }
+        .hero-content { max-width: 800px; }
+        .hero h1 { line-height: 1.2; }
+        .hero p { max-width: 600px; margin: 0 auto 2rem auto; font-weight: 300; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .about-content img { width: 100%; max-width: 400px; border-radius: 20px; justify-self: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; padding: 2rem; text-align: center; backdrop-filter: blur(5px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .feature-card i { font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .industries-grid, .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
+        .industry-card, .testimonial-card { background: var(--glass-bg); border-radius: 15px; padding: 2rem; }
+        .testimonial-card p.author { font-weight: bold; margin-top: 1rem; color: var(--secondary-color); }
+        .footer { background: #061a40; text-align: center; padding: 3rem 2rem; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .footer-links { display: flex; gap: 2rem; margin-bottom: 1rem; }
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
-
-            .nav-links { display: none; /* Simplification for this example. A real site would use a hamburger menu. */ }
-            .header .btn-primary { display: none; }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .about-content img {
-                order: -1; /* Puts image on top */
-                margin-bottom: 2rem;
-            }
+            .nav-links, .header .btn-primary { display: none; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            .about-content img { order: -1; margin-bottom: 2rem; }
         }
     </style>
 </head>
@@ -331,17 +78,17 @@
 
     <header class="header">
         <div class="container">
-            <a href="#home" class="logo">
+            <a href="index.html" class="logo">
                 <img src="app_logo.png" alt="Evolve.AI Logo">
                 Evolve.AI
             </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#privacy-policy">Privacy Policy</a></li>
-                    <li><a href="#terms-of-service">Terms of Service</a></li>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
                 </ul>
             </nav>
             <a href="#" class="btn btn-primary">Get Started</a>
@@ -349,7 +96,6 @@
     </header>
 
     <main>
-
         <section id="home" class="hero">
             <div class="hero-content">
                 <h1>Master Your Career Evolution Through AI-Powered Learning</h1>
@@ -382,36 +128,12 @@
             <div class="container">
                 <h2>Why Choose Evolve.AI?</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-route"></i>
-                        <h3>Personalized Learning Paths</h3>
-                        <p>Tailored content based on your industry and role to ensure relevance and impact.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Daily Microlearning</h3>
-                        <p>Learn at your own pace with bite-sized, engaging lessons that fit into your busy schedule.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-brain"></i>
-                        <h3>AI-Powered Assessment</h3>
-                        <p>Gemini AI provides adaptive questioning and instant feedback to accelerate your learning.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Progress Tracking</h3>
-                        <p>Visual indicators of completion and mastery levels help you stay motivated and on track.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-users"></i>
-                        <h3>Community Hub</h3>
-                        <p>Connect with other professionals, share insights, and grow your network.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-certificate"></i>
-                        <h3>Professional Certificates</h3>
-                        <p>Generate verifiable certificates upon course completion to showcase your new skills.</p>
-                    </div>
+                    <div class="feature-card"> <i class="fas fa-route"></i><h3>Personalized Learning Paths</h3> <p>Tailored content based on your industry and role to ensure relevance and impact.</p></div>
+                    <div class="feature-card"> <i class="fas fa-lightbulb"></i><h3>Daily Microlearning</h3> <p>Learn at your own pace with bite-sized, engaging lessons that fit into your busy schedule.</p></div>
+                    <div class="feature-card"> <i class="fas fa-brain"></i><h3>AI-Powered Assessment</h3> <p>Gemini AI provides adaptive questioning and instant feedback to accelerate your learning.</p></div>
+                    <div class="feature-card"> <i class="fas fa-chart-line"></i><h3>Progress Tracking</h3> <p>Visual indicators of completion and mastery levels help you stay motivated and on track.</p></div>
+                    <div class="feature-card"> <i class="fas fa-users"></i><h3>Community Hub</h3> <p>Connect with other professionals, share insights, and grow your network.</p></div>
+                    <div class="feature-card"> <i class="fas fa-certificate"></i><h3>Professional Certificates</h3> <p>Generate verifiable certificates upon course completion to showcase your new skills.</p></div>
                 </div>
             </div>
         </section>
@@ -420,26 +142,11 @@
             <div class="container">
                 <h2>For Professionals In Every Industry</h2>
                 <div class="industries-grid">
-                    <div class="industry-card">
-                        <h3>Legal</h3>
-                        <p>Automate document review and legal research with AI.</p>
-                    </div>
-                     <div class="industry-card">
-                        <h3>Accounting</h3>
-                        <p>Streamline financial analysis and fraud detection.</p>
-                    </div>
-                     <div class="industry-card">
-                        <h3>Marketing</h3>
-                        <p>Optimize campaigns and personalize customer experiences.</p>
-                    </div>
-                     <div class="industry-card">
-                        <h3>Healthcare</h3>
-                        <p>Enhance diagnostics and patient data management.</p>
-                    </div>
-                     <div class="industry-card">
-                        <h3>Education</h3>
-                        <p>Create personalized learning plans and automate grading.</p>
-                    </div>
+                    <div class="industry-card"><h3>Legal</h3><p>Automate document review and legal research with AI.</p></div>
+                    <div class="industry-card"><h3>Accounting</h3><p>Streamline financial analysis and fraud detection.</p></div>
+                    <div class="industry-card"><h3>Marketing</h3><p>Optimize campaigns and personalize customer experiences.</p></div>
+                    <div class="industry-card"><h3>Healthcare</h3><p>Enhance diagnostics and patient data management.</p></div>
+                    <div class="industry-card"><h3>Education</h3><p>Create personalized learning plans and automate grading.</p></div>
                 </div>
             </div>
         </section>
@@ -448,155 +155,22 @@
             <div class="container">
                 <h2>Trusted by Professionals</h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"Evolve.AI made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career!"</p>
-                        <p class="author">- Jane D., Marketing Manager</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"The bite-sized lessons are perfect for my busy schedule. I've learned more in a month than I did in a year of reading articles."</p>
-                        <p class="author">- John S., Financial Analyst</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"As a lawyer, staying updated is crucial. Evolve.AI provides the exact, relevant information I need without the fluff."</p>
-                        <p class="author">- Emily R., Corporate Lawyer</p>
-                    </div>
+                    <div class="testimonial-card"><p>"Evolve.AI made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career!"</p><p class="author">- Jane D., Marketing Manager</p></div>
+                    <div class="testimonial-card"><p>"The bite-sized lessons are perfect for my busy schedule. I've learned more in a month than I did in a year of reading articles."</p><p class="author">- John S., Financial Analyst</p></div>
+                    <div class="testimonial-card"><p>"As a lawyer, staying updated is crucial. Evolve.AI provides the exact, relevant information I need without the fluff."</p><p class="author">- Emily R., Corporate Lawyer</p></div>
                 </div>
             </div>
         </section>
-        
-        <section id="privacy-policy">
-            <div class="container">
-                 <div class="legal-content">
-                    <h2>Privacy Policy</h2>
-                    <p><strong>Effective Date:</strong> October 14, 2025</p>
-                    <p><strong>Last Updated:</strong> October 14, 2025</p>
-                    
-                    <h3>1. Introduction</h3>
-                    <p>This Privacy Policy describes how Evolve.AI ("we," "us," or "our") collects, uses, and shares information about you when you use our mobile application and related services (collectively, the "Service"). This Policy applies to information we collect through the App and in email, text, and other electronic communications. By using the Service, you consent to the data practices described in this Policy.</p>
-                    
-                    <h3>2. Information We Collect</h3>
-                    <h4>2.1. Information You Provide to Us</h4>
-                    <ul>
-                        <li><strong>Account Information:</strong> When you create an account, we collect your name, email address, and password.</li>
-                        <li><strong>Profile Information:</strong> You may optionally provide additional information such as your job title, industry, company name, and professional interests.</li>
-                        <li><strong>User Content:</strong> Any content you submit, post, or share through the Service, including posts in the Community Hub, comments, and feedback.</li>
-                        <li><strong>Communications:</strong> If you contact us directly, we may receive additional information about you, such as the contents of your message.</li>
-                    </ul>
-                    
-                    <h4>2.2. Information We Collect Automatically</h4>
-                     <ul>
-                        <li><strong>Usage Data:</strong> We collect information about your interactions with the Service, including the courses you access, lessons completed, quiz results, time spent on the App, and navigation patterns.</li>
-                        <li><strong>Device Information:</strong> We collect information about the device you use to access the Service, including device type, operating system, unique device identifiers, and mobile network information.</li>
-                        <li><strong>Log Data:</strong> Our servers automatically record information created by your use of the Service, such as IP address, browser type, referring/exit pages, and timestamps.</li>
-                    </ul>
-                    
-                    <h4>2.3. Information from Third Parties</h4>
-                    <p>We may receive information about you from third-party services if you choose to connect your account with such services (e.g., social media platforms for authentication).</p>
-                    
-                    <h3>3. How We Use Your Information</h3>
-                    <p>We use the information we collect to:</p>
-                    <ul>
-                        <li>Provide, maintain, and improve the Service</li>
-                        <li>Personalize your learning experience and provide tailored content recommendations</li>
-                        <li>Process and track your progress through courses and learning paths</li>
-                        <li>Generate certificates upon course completion</li>
-                        <li>Communicate with you about the Service, including updates, security alerts, and support messages</li>
-                        <li>Analyze usage patterns to improve our content and features</li>
-                        <li>Detect, prevent, and address technical issues and fraudulent activity</li>
-                        <li>Comply with legal obligations and enforce our Terms of Service</li>
-                    </ul>
-                    
-                    <h3>4. Information Sharing and Disclosure</h3>
-                    <p>We do not sell your personal information. We may share your information in the following circumstances:</p>
-                    <ul>
-                        <li><strong>With Your Consent:</strong> We may share your information when you give us explicit permission to do so.</li>
-                        <li><strong>Service Providers:</strong> We may share information with third-party service providers who perform services on our behalf, such as cloud hosting, data analysis, and customer support. These providers are contractually obligated to protect your information.</li>
-                        <li><strong>Legal Requirements:</strong> We may disclose information if required to do so by law or in response to valid requests by public authorities (e.g., a court or government agency).</li>
-                        <li><strong>Community Features:</strong> Information you share through the Community Hub may be visible to other users of the Service. Please exercise caution when sharing personal information in public forums.</li>
-                    </ul>
-
-                    <h3>5. Data Retention</h3>
-                    <p>We retain your information for as long as your account is active or as needed to provide you with the Service. We may also retain and use your information to comply with legal obligations, resolve disputes, and enforce our agreements. When you delete your account, we will delete or anonymize your personal information, except where we are required to retain it by law.</p>
-                    
-                    <h3>6. Your Rights and Choices</h3>
-                     <ul>
-                        <li><strong>Access and Update:</strong> You can access and update your account information through the App's settings.</li>
-                        <li><strong>Delete Your Account:</strong> You may delete your account at any time through the App settings or by contacting us at evolve.ai@outlook.com.</li>
-                        <li><strong>Marketing Communications:</strong> You can opt out of receiving promotional emails from us by following the unsubscribe instructions in those emails or by adjusting your notification preferences in the App.</li>
-                    </ul>
-
-                    <h3>7. Children's Privacy</h3>
-                    <p>The Service is intended for users who are at least 13 years of age. We do not knowingly collect personal information from children under 13. If we learn that we have collected personal information from a child under 13, we will take steps to delete such information as soon as possible. If you believe we have collected information from a child under 13, please contact us at evolve.ai@outlook.com.</p>
-                    
-                    <h3>8. Security</h3>
-                    <p>We implement reasonable security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure. While we strive to protect your personal information, we cannot guarantee its absolute security.</p>
-
-                    <h3>9. Changes to This Policy</h3>
-                    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the updated Policy in the App and updating the "Last Updated" date. Your continued use of the Service after such changes constitutes your acceptance of the updated Policy.</p>
-                    
-                    <h3>10. Contact Information</h3>
-                    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us at:</p>
-                    <p>App Name: EVOLVE.AI<br>Support Email: evolve.ai@outlook.com<br>Address: Durham, North Carolina, United States</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="terms-of-service" style="background-color: #082054;">
-            <div class="container">
-                <div class="legal-content">
-                    <h2>Terms and Conditions</h2>
-                    <p><strong>Effective Date:</strong> October 14, 2025</p>
-                    <p><strong>Last Updated:</strong> October 14, 2025</p>
-                    <p><strong>IMPORTANT NOTICE:</strong> PLEASE READ THESE TERMS AND CONDITIONS ("TERMS") CAREFULLY. BY DOWNLOADING, INSTALLING, ACCESSING, OR USING THE EVOLVE.AI MOBILE APPLICATION ("APP" OR "SERVICE"), YOU ARE ENTERING INTO A LEGALLY BINDING AGREEMENT WITH THE OWNERS AND OPERATORS OF THE APP ("WE," "US," OR "OUR"). IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, YOU MUST IMMEDIATELY CEASE ALL USE OF THE SERVICE AND DELETE THE APP FROM YOUR DEVICE.</p>
-                    
-                    <script>
-                        const termsContent = {
-                            "1. Acceptance of Terms": "1.1. These Terms constitute a legally binding agreement between you ('User,' 'you,' or 'your') and the owners and operators of the EVOLVE.AI regarding your use of the App and all related services, features, and content. 1.2. By using the Service, you affirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy, which is incorporated herein by reference.",
-                            "2. Incorporation of Platform Terms": "2.1. The Service is available through third-party platforms such as the Apple App Store and Google Play Store ('Platforms'). Your use of the Service is also subject to the applicable terms of service of these Platforms (the 'Platform Terms'). In the event of a conflict between these Terms and any Platform Terms, the Platform Terms shall control. 2.2. You acknowledge and agree that Apple, Inc. and Google LLC are third-party beneficiaries of these Terms and, upon your acceptance, will have the right (and will be deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary thereof. We are solely responsible for the App and its content.",
-                            "3. Service Description": "3.1. The EVOLVE.AI is a FREE SERVICE provided on an 'AS-IS' and 'AS-AVAILABLE' basis. It offers AI-powered educational content, courses, quizzes, and community features for informational purposes only. 3.2. We do not guarantee the accuracy, completeness, or usefulness of any information on the Service and assume no responsibility for any errors or omissions. The Service may be modified, updated, interrupted, suspended, or discontinued at any time without notice or liability.",
-                            "4. User Eligibility": "4.1. The Service is intended for users who are at least thirteen (13) years of age or older. By using the Service, you represent and warrant that you meet this age requirement. If you are between the ages of 13 and 18 (or the age of legal majority in your jurisdiction), you may only use the Service under the supervision of a parent or legal guardian who agrees to be bound by these Terms.",
-                            "5. User Registration": "5.1. To access certain features of the Service, you may be required to create an account. You agree to provide accurate, current, and complete information during the registration process. 5.2. You are solely responsible for safeguarding your account password and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account.",
-                            "6. User Content and Feedback": "6.1. You retain ownership of any content you submit, post, or display on or through the Service ('User Content'). 6.2. By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free, perpetual, irrevocable, sublicensable, and transferable license to use, reproduce, modify, distribute, display, and perform the User Content in connection with operating and providing the Service.",
-                            "7. Prohibited Conduct": "7.1. You agree not to engage in any of the following prohibited activities: a. Using the Service for any illegal purpose or in violation of any local, state, national, or international law. b. Violating or encouraging others to violate the rights of third parties, including intellectual property rights. c. Posting, uploading, or distributing any content that is unlawful, defamatory, libelous, inaccurate, or that a reasonable person could deem to be objectionable, profane, indecent, pornographic, harassing, threatening, hateful, or otherwise inappropriate. d. Interfering with security-related features of the Service... e. Reverse engineering... or otherwise attempting to discover the source code... f. Impersonating any person or entity...",
-                            "8. Intellectual Property": "8.1. All rights, title, and interest in and to the Service, including all of its content, features, and functionality (but excluding User Content), are and will remain our exclusive property and that of our licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.",
-                            "9. Limitation of Liability": "9.1. AS THE SERVICE IS PROVIDED FREE OF CHARGE, TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WE... BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES... 9.2. OUR TOTAL CUMULATIVE LIABILITY TO YOU... IS LIMITED TO AND SHALL NOT EXCEED ZERO DOLLARS (US $0.00).",
-                            "10. Disclaimer of Warranties": "10.1. THE SERVICE IS PROVIDED ON AN 'AS-IS' AND 'AS-AVAILABLE' BASIS, WITH ALL FAULTS AND WITHOUT WARRANTIES OF ANY KIND. 10.2. WE EXPRESSLY DISCLAIM ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE...",
-                            "11. Class Action Waiver": "11.1. YOU AND WE AGREE THAT ANY PROCEEDINGS TO RESOLVE OR LITIGATE ANY DISPUTE WILL BE CONDUCTED SOLELY ON AN INDIVIDUAL BASIS...",
-                            "12. Indemnification": "12.1. You agree to defend, indemnify, and hold us harmless from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses... arising from your use of the Service...",
-                            "13. Termination": "13.1. We may terminate or suspend your access to the Service immediately, without prior notice or liability, for any reason whatsoever... 13.2. Upon termination, your right to use the Service will immediately cease.",
-                            "14. Governing Law and Dispute Resolution": "14.1. Governing Law: These Terms shall be governed by... the laws of the State of California... 14.2. Arbitration: Any dispute... shall be resolved by binding arbitration... in Berea, Kentucky. YOU AND WE ARE EACH WAIVING THE RIGHT TO A TRIAL BY JURY.",
-                            "15. Severability": "15.1. If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary...",
-                            "16. Changes to Terms": "16.1. We reserve the right... to modify or replace these Terms at any time. Your continued use... constitutes your acceptance of the new Terms.",
-                            "17. Entire Agreement": "17.1. These Terms and our Privacy Policy constitute the entire and exclusive understanding and agreement between you and us...",
-                            "18. Community Guidelines": "18.1. User-Regulated Moderation: The Service includes community features that rely on a user-regulated content moderation system... 18.2. Reporting and Thresholds: Users may report content... Content that reaches a certain number of reports... will be automatically flagged for review. 18.3. Prohibited Content: A detailed list of prohibited content is available within our Privacy Policy and Community Guidelines sections...",
-                            "19. Contact Information": "19.1. For any questions, concerns, or inquiries regarding these Terms, please contact us at: App Name: EVOLVE.AI, Support Email: evolve.ai@outlook.com, Address: Durham, North Carolina, United States"
-                        };
-
-                        const container = document.querySelector('#terms-of-service .legal-content');
-                        for (const title in termsContent) {
-                            const h3 = document.createElement('h3');
-                            h3.textContent = title;
-                            container.appendChild(h3);
-
-                            const p = document.createElement('p');
-                            p.textContent = termsContent[title];
-                            container.appendChild(p);
-                        }
-                    </script>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <a href="#" class="btn btn-primary">Download on the App Store</a>
             <div class="footer-links">
-                <a href="#privacy-policy">Privacy Policy</a>
-                <a href="#terms-of-service">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
             </div>
-             <p>Contact Us: <a href="mailto:evolve.ai@outlook.com">evolve.ai@outlook.com</a></p>
+            <p>Contact Us: <a href="mailto:evolve.ai@outlook.com">evolve.ai@outlook.com</a></p>
             <p>&copy; 2025 Evolve.AI. All rights reserved.</p>
         </div>
     </footer>
