@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolve.AI - Master Your Career Evolution</title>
-    <meta name="description" content="Evolve.AI is an innovative learning platform designed to help professionals master job-critical AI tools through daily microlearning sessions.">
-    <meta name="keywords" content="AI learning, Evolve.AI, professional development, microlearning, AI tools">
+    <title>Cognein - Your AI Learning Companion</title>
+    <meta name="description" content="Cognein is your AI-powered learning companion designed to help professionals master job-critical AI tools through personalized daily microlearning sessions.">
+    <meta name="keywords" content="AI learning, Cognein, professional development, microlearning, AI tools, AI companion">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cognein - Your AI Learning Companion">
+    <meta property="og:description" content="Master job-critical AI tools through personalized daily microlearning with Cognein">
+    <meta property="og:url" content="https://cognein.com">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +20,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        /* CSS is identical across all pages for consistency */
         :root {
             --primary-color: #0A2463;
             --secondary-color: #3E92CC;
@@ -39,19 +44,36 @@
         .header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-weight: 700; font-size: 1.5rem; color: var(--accent-color); display: flex; align-items: center; }
         .logo img { width: 40px; margin-right: 10px; }
-        .nav-links { list-style: none; display: flex; }
+        .nav-links { list-style: none; display: flex; align-items: center; }
         .nav-links li { margin-left: 2rem; }
         .nav-links a { color: var(--text-color); transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--secondary-color); }
-        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; transition: all 0.3s ease; border: none; cursor: pointer; text-align: center; }
         .btn-primary { background-color: var(--secondary-color); color: var(--accent-color); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(62, 146, 204, 0.4); }
         .btn-secondary { background: transparent; color: var(--accent-color); border: 2px solid var(--secondary-color); margin-left: 1rem; }
         .btn-secondary:hover { background: var(--secondary-color); }
+        .btn-login { background: transparent; color: var(--accent-color); border: 2px solid var(--secondary-color); padding: 0.5rem 1.25rem; font-size: 0.95rem; }
+        .btn-login:hover { background: var(--secondary-color); }
+        .btn-signup { background-color: var(--secondary-color); color: var(--accent-color); padding: 0.5rem 1.25rem; font-size: 0.95rem; margin-left: 0.5rem; }
+        .btn-signup:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(62, 146, 204, 0.4); }
+        .auth-buttons { display: flex; gap: 0.5rem; align-items: center; }
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 60px; }
         .hero-content { max-width: 800px; }
         .hero h1 { line-height: 1.2; }
         .hero p { max-width: 600px; margin: 0 auto 2rem auto; font-weight: 300; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; margin-top: 2rem; }
+        .download-section { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; padding: 3rem 2rem; margin-top: 3rem; text-align: center; backdrop-filter: blur(5px); }
+        .download-section h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+        .download-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .app-store-btn { display: inline-flex; align-items: center; padding: 0.75rem 1.5rem; background: #000; color: #fff; border-radius: 10px; transition: all 0.3s ease; }
+        .app-store-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+        .app-store-btn i { font-size: 2rem; margin-right: 0.75rem; }
+        .app-store-text { text-align: left; }
+        .app-store-text small { font-size: 0.7rem; display: block; }
+        .app-store-text strong { font-size: 1.1rem; display: block; }
+        .coming-soon-btn { display: inline-flex; align-items: center; padding: 0.75rem 1.5rem; background: #555; color: #aaa; border-radius: 10px; cursor: not-allowed; opacity: 0.6; }
+        .coming-soon-btn i { font-size: 2rem; margin-right: 0.75rem; }
         .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
         .about-content img { width: 100%; max-width: 400px; border-radius: 20px; justify-self: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
@@ -68,7 +90,10 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
-            .nav-links, .header .btn-primary { display: none; }
+            .nav-links { display: none; }
+            .auth-buttons { flex-direction: column; gap: 0.5rem; }
+            .cta-buttons { flex-direction: column; }
+            .download-buttons { flex-direction: column; }
             .about-content { grid-template-columns: 1fr; text-align: center; }
             .about-content img { order: -1; margin-bottom: 2rem; }
         }
@@ -79,8 +104,8 @@
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="app_logo.png" alt="Evolve.AI Logo">
-                Evolve.AI
+                <img src="app_logo.png" alt="Cognein Logo">
+                Cognein
             </a>
             <nav>
                 <ul class="nav-links">
@@ -89,36 +114,60 @@
                     <li><a href="index.html#features">Features</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
+                    <li class="auth-buttons">
+                        <a href="https://app.cognein.com" class="btn btn-login">Login</a>
+                        <a href="https://app.cognein.com" class="btn btn-signup">Sign Up</a>
+                    </li>
                 </ul>
             </nav>
-            <a href="#" class="btn btn-primary">Get Started</a>
         </div>
     </header>
 
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Master Your Career Evolution Through AI-Powered Learning</h1>
-                <p>Evolve.AI is an innovative learning platform designed to help professionals master job-critical AI tools through daily microlearning sessions.</p>
-                <div>
-                    <a href="#" class="btn btn-primary">Download on the App Store</a>
+                <h1>Your AI Learning Companion for Career Growth</h1>
+                <p>Cognein is your personalized AI-powered learning companion that helps professionals master job-critical AI tools through engaging daily microlearning sessions tailored to your industry and role.</p>
+                <div class="cta-buttons">
+                    <a href="https://app.cognein.com" class="btn btn-primary">Get Started Free</a>
                     <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="download-section">
+                    <h3>Download Cognein Now</h3>
+                    <p>Available on mobile - learn anywhere, anytime</p>
+                    <div class="download-buttons">
+                        <a href="https://apps.apple.com/us/app/evolve-ai/id6754223888" class="app-store-btn" target="_blank">
+                            <i class="fab fa-apple"></i>
+                            <div class="app-store-text">
+                                <small>Download on the</small>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                        <div class="coming-soon-btn">
+                            <i class="fab fa-google-play"></i>
+                            <div class="app-store-text">
+                                <small>Coming Soon to</small>
+                                <strong>Google Play</strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="about">
             <div class="container">
-                <h2>About Evolve.AI</h2>
+                <h2>About Cognein</h2>
                 <div class="about-content">
                     <div>
-                        <h3>Our Platform</h3>
-                        <p>Evolve.AI is an AI-powered learning platform that helps professionals master job-critical AI tools through personalized learning paths, daily microlearning modules, and comprehensive progress tracking.</p>
+                        <h3>Your AI Learning Companion</h3>
+                        <p>Cognein is an AI-powered learning companion that transforms how professionals master AI tools. Through personalized learning paths, daily microlearning modules, and AI-driven assessments, we make learning engaging, effective, and perfectly suited to your career.</p>
                         <h3>Our Mission</h3>
-                        <p>Our mission is to make AI education accessible, engaging, and effective for everyone. We believe that AI literacy is not just for tech professionals anymore—it's a critical skill for all industries and career paths.</p>
+                        <p>Our mission is to democratize AI education and make it accessible, engaging, and effective for everyone. We believe AI literacy is a critical skill across all industries and career paths—not just for tech professionals.</p>
                     </div>
                     <div>
-                        <img src="app-screenshot.png" alt="Evolve.AI app interface mockup">
+                        <img src="app-screenshot.png" alt="Cognein app interface showing personalized learning">
                     </div>
                 </div>
             </div>
@@ -126,14 +175,38 @@
 
         <section id="features">
             <div class="container">
-                <h2>Why Choose Evolve.AI?</h2>
+                <h2>Why Choose Cognein?</h2>
                 <div class="features-grid">
-                    <div class="feature-card"> <i class="fas fa-route"></i><h3>Personalized Learning Paths</h3> <p>Tailored content based on your industry and role to ensure relevance and impact.</p></div>
-                    <div class="feature-card"> <i class="fas fa-lightbulb"></i><h3>Daily Microlearning</h3> <p>Learn at your own pace with bite-sized, engaging lessons that fit into your busy schedule.</p></div>
-                    <div class="feature-card"> <i class="fas fa-brain"></i><h3>AI-Powered Assessment</h3> <p>Gemini AI provides adaptive questioning and instant feedback to accelerate your learning.</p></div>
-                    <div class="feature-card"> <i class="fas fa-chart-line"></i><h3>Progress Tracking</h3> <p>Visual indicators of completion and mastery levels help you stay motivated and on track.</p></div>
-                    <div class="feature-card"> <i class="fas fa-users"></i><h3>Community Hub</h3> <p>Connect with other professionals, share insights, and grow your network.</p></div>
-                    <div class="feature-card"> <i class="fas fa-certificate"></i><h3>Professional Certificates</h3> <p>Generate verifiable certificates upon course completion to showcase your new skills.</p></div>
+                    <div class="feature-card">
+                        <i class="fas fa-route"></i>
+                        <h3>Personalized Learning Paths</h3>
+                        <p>Tailored content based on your industry and role to ensure maximum relevance and impact for your career.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Daily Microlearning</h3>
+                        <p>Learn at your own pace with bite-sized, engaging lessons that seamlessly fit into your busy schedule.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI-Powered Assessment</h3>
+                        <p>Gemini AI provides adaptive questioning and instant feedback to accelerate your learning journey.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Progress Tracking</h3>
+                        <p>Visual indicators of completion and mastery levels help you stay motivated and achieve your goals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Hub</h3>
+                        <p>Connect with other professionals, share insights, ask questions, and grow your network.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-certificate"></i>
+                        <h3>Professional Certificates</h3>
+                        <p>Generate verifiable certificates upon course completion to showcase your new skills to employers.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -142,11 +215,26 @@
             <div class="container">
                 <h2>For Professionals In Every Industry</h2>
                 <div class="industries-grid">
-                    <div class="industry-card"><h3>Legal</h3><p>Automate document review and legal research with AI.</p></div>
-                    <div class="industry-card"><h3>Accounting</h3><p>Streamline financial analysis and fraud detection.</p></div>
-                    <div class="industry-card"><h3>Marketing</h3><p>Optimize campaigns and personalize customer experiences.</p></div>
-                    <div class="industry-card"><h3>Healthcare</h3><p>Enhance diagnostics and patient data management.</p></div>
-                    <div class="industry-card"><h3>Education</h3><p>Create personalized learning plans and automate grading.</p></div>
+                    <div class="industry-card">
+                        <h3>Legal</h3>
+                        <p>Automate document review and legal research with AI-powered tools.</p>
+                    </div>
+                    <div class="industry-card">
+                        <h3>Accounting</h3>
+                        <p>Streamline financial analysis and enhance fraud detection capabilities.</p>
+                    </div>
+                    <div class="industry-card">
+                        <h3>Marketing</h3>
+                        <p>Optimize campaigns and create personalized customer experiences.</p>
+                    </div>
+                    <div class="industry-card">
+                        <h3>Healthcare</h3>
+                        <p>Enhance diagnostics and improve patient data management systems.</p>
+                    </div>
+                    <div class="industry-card">
+                        <h3>Education</h3>
+                        <p>Create personalized learning plans and automate grading processes.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -155,9 +243,44 @@
             <div class="container">
                 <h2>Trusted by Professionals</h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card"><p>"Evolve.AI made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career!"</p><p class="author">- Jane D., Marketing Manager</p></div>
-                    <div class="testimonial-card"><p>"The bite-sized lessons are perfect for my busy schedule. I've learned more in a month than I did in a year of reading articles."</p><p class="author">- John S., Financial Analyst</p></div>
-                    <div class="testimonial-card"><p>"As a lawyer, staying updated is crucial. Evolve.AI provides the exact, relevant information I need without the fluff."</p><p class="author">- Emily R., Corporate Lawyer</p></div>
+                    <div class="testimonial-card">
+                        <p>"Cognein made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career!"</p>
+                        <p class="author">- Jane D., Marketing Manager</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"The bite-sized lessons are perfect for my busy schedule. I've learned more in a month than I did in a year of reading articles."</p>
+                        <p class="author">- John S., Financial Analyst</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"As a lawyer, staying updated is crucial. Cognein provides the exact, relevant information I need without the fluff."</p>
+                        <p class="author">- Emily R., Corporate Lawyer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta-final">
+            <div class="container" style="text-align: center;">
+                <h2>Ready to Transform Your Career with AI?</h2>
+                <p style="max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.2rem;">Join thousands of professionals who are already mastering AI tools with Cognein.</p>
+                <div class="cta-buttons">
+                    <a href="https://app.cognein.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Start Learning Today</a>
+                </div>
+                <div class="download-buttons" style="margin-top: 2rem;">
+                    <a href="https://apps.apple.com/us/app/evolve-ai/id6754223888" class="app-store-btn" target="_blank">
+                        <i class="fab fa-apple"></i>
+                        <div class="app-store-text">
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <div class="coming-soon-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div class="app-store-text">
+                            <small>Coming Soon to</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -165,13 +288,13 @@
 
     <footer class="footer">
         <div class="container footer-content">
-            <a href="#" class="btn btn-primary">Download on the App Store</a>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
+                <a href="https://app.cognein.com">Web App</a>
             </div>
-            <p>Contact Us: <a href="mailto:evolve.ai@outlook.com">evolve.ai@outlook.com</a></p>
-            <p>&copy; 2025 Evolve.AI. All rights reserved.</p>
+            <p>Contact Us: <a href="mailto:cognein.ai@outlook.com">cognein.ai@outlook.com</a></p>
+            <p>&copy; 2025 Cognein. All rights reserved.</p>
         </div>
     </footer>
 
