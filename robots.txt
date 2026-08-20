@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cognein.com/sitemap.xml

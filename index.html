@@ -1,868 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognein - Your AI Learning Companion</title>
-    <meta name="description" content="Cognein is your AI-powered learning companion designed to help professionals master job-critical AI tools through personalized daily microlearning sessions.">
-    <meta name="keywords" content="AI learning, Cognein, professional development, microlearning, AI tools, AI companion">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Cognein - Your AI Learning Companion">
-    <meta property="og:description" content="Master job-critical AI tools through personalized daily microlearning with Cognein">
-    <meta property="og:url" content="https://cognein.com">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-dark: #1d1d1f;
-            --secondary-dark: #2d2d2f;
-            --light-blue: #0071e3;
-            --light-blue-hover: #0077ed;
-            --accent-blue: #00a8ff;
-            --text-primary: #f5f5f7;
-            --text-secondary: #a1a1a6;
-            --background-dark: #000000;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --blur-amount: 20px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-            background: var(--background-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Animated gradient background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(0, 113, 227, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 168, 255, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(0, 113, 227, 0.08) 0%, transparent 50%);
-            animation: gradientShift 20s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: scale(1.1);
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header Styles */
-        .header {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(var(--blur-amount));
-            -webkit-backdrop-filter: blur(var(--blur-amount));
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-weight: 600;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            transition: opacity 0.3s ease;
-        }
-
-        .logo:hover {
-            opacity: 0.8;
-        }
-
-        .logo img {
-            width: 36px;
-            height: 36px;
-            margin-right: 10px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 400;
-            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.625rem 1.25rem;
-            border-radius: 980px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            letter-spacing: -0.01em;
-        }
-
-        .btn-login {
-            background: transparent;
-            color: var(--light-blue);
-            border: 1.5px solid var(--light-blue);
-        }
-
-        .btn-login:hover {
-            background: rgba(0, 113, 227, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .btn-signup {
-            background: var(--light-blue);
-            color: white;
-        }
-
-        .btn-signup:hover {
-            background: var(--light-blue-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
-        }
-
-        .btn-primary {
-            background: var(--light-blue);
-            color: white;
-            padding: 0.875rem 2rem;
-            font-size: 1rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--light-blue-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(0, 113, 227, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light-blue);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            padding: 0.875rem 2rem;
-            font-size: 1rem;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--light-blue);
-            background: rgba(0, 113, 227, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 0 4rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        /* Download Section */
-        .download-section {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-            backdrop-filter: blur(var(--blur-amount));
-            -webkit-backdrop-filter: blur(var(--blur-amount));
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .download-section:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .download-section h3 {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-        }
-
-        .download-section > p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 1.25rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .app-store-btn,
-        .coming-soon-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.875rem 1.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .app-store-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .coming-soon-btn {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .app-store-btn i,
-        .coming-soon-btn i {
-            font-size: 2rem;
-            margin-right: 0.875rem;
-        }
-
-        .app-store-text {
-            text-align: left;
-        }
-
-        .app-store-text small {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            display: block;
-        }
-
-        .app-store-text strong {
-            font-size: 1.125rem;
-            display: block;
-            font-weight: 500;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            text-align: center;
-            margin-bottom: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        p {
-            font-size: 1.0625rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content > div:first-child {
-            animation: fadeInLeft 0.8s ease-out;
-        }
-
-        .about-content > div:last-child {
-            animation: fadeInRight 0.8s ease-out;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .about-content img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .about-content img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            backdrop-filter: blur(var(--blur-amount));
-            -webkit-backdrop-filter: blur(var(--blur-amount));
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 113, 227, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 113, 227, 0.15);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--light-blue);
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover i {
-            transform: scale(1.1);
-        }
-
-        .feature-card h3 {
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-        }
-
-        /* Industries & Testimonials Grid */
-        .industries-grid,
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .industry-card,
-        .testimonial-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            backdrop-filter: blur(var(--blur-amount));
-            -webkit-backdrop-filter: blur(var(--blur-amount));
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .industry-card:hover,
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .industry-card h3 {
-            color: var(--light-blue);
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .testimonial-card p.author {
-            font-style: normal;
-            font-weight: 600;
-            color: var(--light-blue);
-            margin-top: 1rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--light-blue);
-        }
-
-        .footer p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: var(--light-blue);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.25rem;
-            }
-
-            .header .container {
-                padding: 0.875rem 1.25rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 6rem 0 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .about-content img {
-                order: -1;
-                margin: 0 auto;
-            }
-
-            .download-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .download-buttons {
-                flex-direction: column;
-            }
-
-            .app-store-btn,
-            .coming-soon-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
-            h2 {
-                margin-bottom: 2.5rem;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        /* Smooth scroll indicator */
-        @media (prefers-reduced-motion: no-preference) {
-            html {
-                scroll-behavior: smooth;
-            }
-        }
-
-        /* Accessibility improvements */
-        .btn:focus,
-        a:focus {
-            outline: 2px solid var(--light-blue);
-            outline-offset: 2px;
-        }
-
-        /* Loading animation */
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cognein — Master AI tools in five minutes a day</title>
+<meta name="description" content="Cognein is an AI learning companion that turns job-critical AI skills into short daily lessons, personalised to your industry and role. Free on iPhone.">
+<meta name="theme-color" content="#05070B">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://cognein.com/">
+
+<!-- Social -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cognein">
+<meta property="og:title" content="Cognein — Master AI tools in five minutes a day">
+<meta property="og:description" content="Short daily AI lessons, personalised to your industry and role. Free on iPhone.">
+<meta property="og:url" content="https://cognein.com/">
+<meta property="og:image" content="https://cognein.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cognein — your AI learning companion">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cognein — Master AI tools in five minutes a day">
+<meta name="twitter:description" content="Short daily AI lessons, personalised to your industry and role. Free on iPhone.">
+<meta name="twitter:image" content="https://cognein.com/assets/og-image.jpg">
+
+<!-- Icons -->
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Type -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="app_logo.png" alt="Cognein Logo">
-                Cognein
-            </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="index.html#features">Features</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li class="auth-buttons">
-                        <a href="https://app.cognein.com" class="btn btn-login">Login</a>
-                        <a href="https://app.cognein.com" class="btn btn-signup">Sign Up</a>
-                    </li>
-                </ul>
-            </nav>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header" data-header>
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Cognein home">
+      <img src="assets/logo-96.png" alt="" width="30" height="30">
+      Cognein
+    </a>
+
+    <nav class="nav" data-nav aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#industries">Industries</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn--quiet" href="https://app.cognein.com">Log in</a>
+      <a class="btn btn--primary" href="https://app.cognein.com">Get started</a>
+      <button class="nav-toggle" data-nav-toggle type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav" data-mobile-nav>
+  <a href="#features">Features</a>
+  <a href="#how">How it works</a>
+  <a href="#industries">Industries</a>
+  <a href="#faq">FAQ</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+  <a class="btn btn--primary" href="https://app.cognein.com">Get started free</a>
+</div>
+
+<main id="main">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <a class="pill" href="https://apps.apple.com/us/app/evolve-ai/id6754223888" target="_blank" rel="noopener" data-reveal>
+          <span class="pill__tag">NEW</span>
+          Cognein is live on the App Store
+        </a>
+
+        <h1 data-reveal style="--reveal-delay:80ms">
+          Master the AI tools<br>
+          your job runs on.<br>
+          <span class="gradient-text">Five minutes a day.</span>
+        </h1>
+
+        <p class="lead" data-reveal style="--reveal-delay:160ms">
+          Cognein is an AI learning companion that turns job-critical AI skills into short,
+          daily lessons — built around your industry, your role, and the pace you actually have.
+        </p>
+
+        <div class="hero-cta" data-reveal style="--reveal-delay:240ms">
+          <a class="store-badge" href="https://apps.apple.com/us/app/evolve-ai/id6754223888" target="_blank" rel="noopener">
+            <img src="assets/app-store-badge.svg" alt="Download Cognein on the App Store" width="143" height="48">
+          </a>
+          <a class="btn btn--ghost btn--lg" href="https://app.cognein.com">
+            Open the web app
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
-    </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Your AI Learning Companion for Career Growth</h1>
-                <p>Cognein is your personalized AI-powered learning companion that helps professionals master job-critical AI tools through engaging daily microlearning sessions tailored to your industry and role.</p>
-                <div class="cta-buttons">
-                    <a href="https://app.cognein.com" class="btn btn-primary">Get Started Free</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
-                </div>
-                
-                <div class="download-section">
-                    <h3>Download Cognein Now</h3>
-                    <p>Available on mobile - learn anywhere, anytime</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/evolve-ai/id6754223888" class="app-store-btn" target="_blank">
-                            <i class="fab fa-apple"></i>
-                            <div class="app-store-text">
-                                <small>Download on the</small>
-                                <strong>App Store</strong>
-                            </div>
-                        </a>
-                        <div class="coming-soon-btn">
-                            <i class="fab fa-google-play"></i>
-                            <div class="app-store-text">
-                                <small>Coming Soon to</small>
-                                <strong>Google Play</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <p class="hero-note" data-reveal style="--reveal-delay:300ms">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+          Free to use · No credit card · Android coming soon
+        </p>
+      </div>
 
-        <section id="about">
-            <div class="container">
-                <h2>About Cognein</h2>
-                <div class="about-content">
-                    <div>
-                        <h3>Your AI Learning Companion</h3>
-                        <p>Cognein is an AI-powered learning companion that transforms how professionals master AI tools. Through personalized learning paths, daily microlearning modules, and AI-driven assessments, we make learning engaging, effective, and perfectly suited to your career.</p>
-                        <h3>Our Mission</h3>
-                        <p>Our mission is to democratize AI education and make it accessible, engaging, and effective for everyone. We believe AI literacy is a critical skill across all industries and career paths—not just for tech professionals.</p>
-                    </div>
-                    <div>
-                        <img src="app-screenshot.png" alt="Cognein app interface showing personalized learning">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <h2>Why Choose Cognein?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-route"></i>
-                        <h3>Personalized Learning Paths</h3>
-                        <p>Tailored content based on your industry and role to ensure maximum relevance and impact for your career.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Daily Microlearning</h3>
-                        <p>Learn at your own pace with bite-sized, engaging lessons that seamlessly fit into your busy schedule.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-brain"></i>
-                        <h3>AI-Powered Assessment</h3>
-                        <p>Gemini AI provides adaptive questioning and instant feedback to accelerate your learning journey.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Progress Tracking</h3>
-                        <p>Visual indicators of completion and mastery levels help you stay motivated and achieve your goals.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-users"></i>
-                        <h3>Community Hub</h3>
-                        <p>Connect with other professionals, share insights, ask questions, and grow your network.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-certificate"></i>
-                        <h3>Professional Certificates</h3>
-                        <p>Generate verifiable certificates upon course completion to showcase your new skills to employers.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="industries">
-            <div class="container">
-                <h2>For Professionals In Every Industry</h2>
-                <div class="industries-grid">
-                    <div class="industry-card">
-                        <h3>Legal</h3>
-                        <p>Automate document review and legal research with AI-powered tools.</p>
-                    </div>
-                    <div class="industry-card">
-                        <h3>Accounting</h3>
-                        <p>Streamline financial analysis and enhance fraud detection capabilities.</p>
-                    </div>
-                    <div class="industry-card">
-                        <h3>Marketing</h3>
-                        <p>Optimize campaigns and create personalized customer experiences.</p>
-                    </div>
-                    <div class="industry-card">
-                        <h3>Healthcare</h3>
-                        <p>Enhance diagnostics and improve patient data management systems.</p>
-                    </div>
-                    <div class="industry-card">
-                        <h3>Education</h3>
-                        <p>Create personalized learning plans and automate grading processes.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials">
-            <div class="container">
-                <h2>Trusted by Professionals</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p>"Cognein made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career!"</p>
-                        <p class="author">- Jane D., Marketing Manager</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"The bite-sized lessons are perfect for my busy schedule. I've learned more in a month than I did in a year of reading articles."</p>
-                        <p class="author">- John S., Financial Analyst</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p>"As a lawyer, staying updated is crucial. Cognein provides the exact, relevant information I need without the fluff."</p>
-                        <p class="author">- Emily R., Corporate Lawyer</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cta-final">
-            <div class="container" style="text-align: center;">
-                <h2>Ready to Transform Your Career with AI?</h2>
-                <p style="max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.2rem;">Join thousands of professionals who are already mastering AI tools with Cognein.</p>
-                <div class="cta-buttons">
-                    <a href="https://app.cognein.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 2rem;">Start Learning Today</a>
-                </div>
-                <div class="download-buttons" style="margin-top: 2rem;">
-                    <a href="https://apps.apple.com/us/app/evolve-ai/id6754223888" class="app-store-btn" target="_blank">
-                        <i class="fab fa-apple"></i>
-                        <div class="app-store-text">
-                            <small>Download on the</small>
-                            <strong>App Store</strong>
-                        </div>
-                    </a>
-                    <div class="coming-soon-btn">
-                        <i class="fab fa-google-play"></i>
-                        <div class="app-store-text">
-                            <small>Coming Soon to</small>
-                            <strong>Google Play</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="https://app.cognein.com">Web App</a>
-            </div>
-            <p>Contact Us: <a href="mailto:cognein@outlook.com">cognein@outlook.com</a></p>
-            <p>&copy; 2025 Cognein. All rights reserved.</p>
+      <div class="device-stage" data-reveal style="--reveal-delay:200ms">
+        <div class="float-card float-card--a">
+          <span class="float-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-6.6 0-4-3.1-6-4.6-9.4-.5 2.5-1.9 3.5-2.9 4.5C10 8 9.5 5.5 9.5 3 7 5.6 5 8.6 5 13.1 5 17.4 8 22 12 22z"/></svg>
+          </span>
+          <div>
+            <strong>7-day streak</strong>
+            <span>Keep the habit going</span>
+          </div>
         </div>
-    </footer>
+
+        <div class="device">
+          <div class="device__island" aria-hidden="true"></div>
+          <div class="device__screen">
+            <img src="assets/app-screen.png" alt="The Cognein app showing a learning streak and a course list with progress indicators" width="663" height="1335" fetchpriority="high">
+          </div>
+        </div>
+
+        <div class="float-card float-card--b">
+          <span class="float-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg>
+          </span>
+          <div>
+            <strong>Lesson ready</strong>
+            <span>Tailored to your role</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== MARQUEE -->
+  <div class="marquee-section">
+    <p class="marquee-label">Built for professionals in</p>
+    <div class="marquee" aria-hidden="true">
+      <ul class="marquee__track">
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Legal</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Accounting</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Marketing</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Healthcare</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Education</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Consulting</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Operations</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Sales</li>
+      </ul>
+      <ul class="marquee__track">
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Legal</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Accounting</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Marketing</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Healthcare</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Education</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Consulting</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Operations</li>
+        <li class="marquee__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>Sales</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ======================================================== FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Features</span>
+        <h2>Everything you need to<br>actually build the habit</h2>
+        <p>Most AI courses are too long to finish. Cognein is designed around the five minutes you already have.</p>
+      </div>
+
+      <div class="bento">
+        <article class="card card--feature bento--wide" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.6"/><circle cx="18" cy="5" r="2.6"/><path d="M8.6 19H14a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h5.4"/></svg>
+          </span>
+          <h3>Personalised learning paths</h3>
+          <p>Tell Cognein your industry and role, and it assembles a path from the AI skills that matter in your actual work — not a generic syllabus. Lessons unlock in order, so there is always one obvious next step.</p>
+        </article>
+
+        <article class="card card--feature bento--wide" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z"/><path d="M18.6 16.4l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7.7-1.9z"/></svg>
+          </span>
+          <h3>AI-powered assessment</h3>
+          <p>Gemini adapts its questions to what you have just learned and where you are shaky, then explains the answer immediately. You find the gaps in minutes instead of discovering them in a meeting.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4.5 13.5H11l-1 8.5L18.5 10.5H12l1-8.5z"/></svg>
+          </span>
+          <h3>Daily microlearning</h3>
+          <p>Bite-sized lessons you can finish between meetings — on the train, in a queue, or over coffee.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 21V12M11 21V7M16 21v-6M21 21V10"/></svg>
+          </span>
+          <h3>Progress &amp; streaks</h3>
+          <p>Completion bars, mastery levels, and a streak counter that makes showing up tomorrow the easy choice.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 5.5H5.5A2.5 2.5 0 0 0 8 8M16 5.5h2.5A2.5 2.5 0 0 1 16 8"/><path d="M12 13v4M9.5 21h5M10 17h4"/></svg>
+          </span>
+          <h3>Contests &amp; rankings</h3>
+          <p>Test yourself against other professionals in timed challenges and climb the leaderboard.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.4a3.2 3.2 0 0 1 0 5.2M17.2 14.8A5.5 5.5 0 0 1 20.5 20"/></svg>
+          </span>
+          <h3>Community hub</h3>
+          <p>Swap prompts, ask questions, and see how peers in your field are putting the same tools to work.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M8.8 13.3L7.5 22l4.5-2.3L16.5 22l-1.3-8.7"/></svg>
+          </span>
+          <h3>Verifiable certificates</h3>
+          <p>Finish a course and generate a certificate you can share on LinkedIn or hand to your manager.</p>
+        </article>
+
+        <article class="card card--feature" data-reveal data-reveal-stagger>
+          <span class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="12" height="9" rx="2"/><path d="M5.5 17h4M7.5 13v4"/><rect x="15.5" y="8.5" width="6.5" height="11.5" rx="1.8"/><path d="M18 17.6h1.5"/></svg>
+          </span>
+          <h3>iPhone and web</h3>
+          <p>Learn on your phone or in any browser — the same account, wherever you happen to be.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">How it works</span>
+        <h2>From download to first skill<br>in one sitting</h2>
+      </div>
+
+      <ol class="steps">
+        <li class="step" data-reveal data-reveal-stagger>
+          <span class="step__num">1</span>
+          <h3>Tell us what you do</h3>
+          <p>Pick your industry and role. Cognein uses them to decide which AI tools and techniques are worth your time — and which are noise.</p>
+        </li>
+        <li class="step" data-reveal data-reveal-stagger>
+          <span class="step__num">2</span>
+          <h3>Learn for five minutes</h3>
+          <p>Each day you get one short lesson and a handful of adaptive questions. Answer, get instant feedback, move on with your morning.</p>
+        </li>
+        <li class="step" data-reveal data-reveal-stagger>
+          <span class="step__num">3</span>
+          <h3>Build proof over time</h3>
+          <p>Streaks keep you consistent, mastery levels show what stuck, and finished courses turn into certificates you can actually show people.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================================================== INDUSTRIES -->
+  <section id="industries">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Industries</span>
+        <h2>The same AI skill<br>looks different in every field</h2>
+        <p>So Cognein teaches it differently. Here is where that starts.</p>
+      </div>
+
+      <div class="industries">
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M8 21h8M4 6h16M6.5 6l-3 6h6l-3-6zM17.5 6l-3 6h6l-3-6z"/></svg>
+          <h3>Legal</h3>
+          <p>Speed up document review and legal research without letting a model invent a citation.</p>
+        </article>
+
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8.5 6.5h7"/><path d="M9 11h.01M12 11h.01M15 11h.01M9 14.5h.01M12 14.5h.01M15 14.5h.01M9 18h6"/></svg>
+          <h3>Accounting</h3>
+          <p>Automate reconciliation and analysis, and sharpen anomaly detection in the numbers.</p>
+        </article>
+
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16.5 9.5a3.5 3.5 0 0 1 0 5M19 7a7 7 0 0 1 0 10"/></svg>
+          <h3>Marketing</h3>
+          <p>Generate and test campaign variants, and personalise without sounding like a robot.</p>
+        </article>
+
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5S4.5 16 4.5 10.5A4 4 0 0 1 12 8a4 4 0 0 1 7.5 2.5c0 5.5-7.5 10-7.5 10z"/><path d="M4.5 12.5h3l1.5-2.5 2 4.5 1.5-3 1 1h5"/></svg>
+          <h3>Healthcare</h3>
+          <p>Support diagnostics and patient data workflows while staying on the right side of compliance.</p>
+        </article>
+
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.5"/></svg>
+          <h3>Education</h3>
+          <p>Build differentiated lesson plans and cut grading time without cutting feedback quality.</p>
+        </article>
+
+        <article class="industry" data-reveal data-reveal-stagger>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+          <h3>Your field too</h3>
+          <p>New paths are added regularly. Tell us what you do and we will build toward it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Testimonials</span>
+        <h2>What people are saying</h2>
+      </div>
+
+      <div class="testimonials">
+        <figure class="quote" data-reveal data-reveal-stagger>
+          <blockquote>“Cognein made learning about complex AI tools incredibly simple and fun. It's a game-changer for my marketing career.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">JD</span>
+            <span>
+              <span class="quote__name">Jane D.</span><br>
+              <span class="quote__role">Marketing Manager</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="quote" data-reveal data-reveal-stagger>
+          <blockquote>“The bite-sized lessons are perfect for my schedule. I've learned more in a month than I did in a year of reading articles.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">JS</span>
+            <span>
+              <span class="quote__name">John S.</span><br>
+              <span class="quote__role">Financial Analyst</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="quote" data-reveal data-reveal-stagger>
+          <blockquote>“As a lawyer, staying updated is crucial. Cognein gives me the exact, relevant information I need without the fluff.”</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">ER</span>
+            <span>
+              <span class="quote__name">Emily R.</span><br>
+              <span class="quote__role">Corporate Lawyer</span>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, answered</h2>
+      </div>
+
+      <div class="faq" data-reveal>
+        <details>
+          <summary>
+            Is Cognein free?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Yes. Cognein is free to use — no credit card required to create an account and start a learning path.</p>
+        </details>
+
+        <details>
+          <summary>
+            Which devices can I use it on?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Cognein is available on iPhone through the App Store, and in any modern browser at app.cognein.com. An Android app is on the way.</p>
+        </details>
+
+        <details>
+          <summary>
+            How much time does it take each day?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>A daily session is designed to take about five minutes — one short lesson plus a few adaptive questions. You can always keep going if you have the time.</p>
+        </details>
+
+        <details>
+          <summary>
+            Do I need a technical background?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>No. Cognein is written for professionals in every field, not just engineers. Lessons start from what your job requires and explain the concepts as they come up.</p>
+        </details>
+
+        <details>
+          <summary>
+            What powers the assessments?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Gemini generates adaptive questions based on the lesson you just completed and the areas you have found difficult, then gives instant feedback on each answer.</p>
+        </details>
+
+        <details>
+          <summary>
+            Do I get a certificate?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Yes. Completing a course generates a verifiable certificate you can share with your employer or add to your LinkedIn profile.</p>
+        </details>
+
+        <details>
+          <summary>
+            How is my data handled?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>We do not sell your personal information. Full detail on what we collect and why is in the <a href="privacy.html">Privacy Policy</a>, and you can delete your account at any time from the app settings.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= FINAL CTA -->
+  <section id="get-started">
+    <div class="container">
+      <div class="cta-panel" data-reveal>
+        <h2>Start your first lesson today</h2>
+        <p>Five minutes a day is enough to stop feeling behind on AI. Download Cognein and find out where you stand.</p>
+        <div class="hero-cta">
+          <a class="store-badge" href="https://apps.apple.com/us/app/evolve-ai/id6754223888" target="_blank" rel="noopener">
+            <img src="assets/app-store-badge.svg" alt="Download Cognein on the App Store" width="143" height="48" loading="lazy">
+          </a>
+          <span class="store-soon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 3.5l11 8.5-11 8.5V3.5z"/><path d="M4 3.5l8.2 6.3M4 20.5l8.2-6.3"/></svg>
+            <span>
+              <span style="font-size:0.6875rem">Coming soon to</span>
+              <strong>Google Play</strong>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================================================== FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" aria-label="Cognein home">
+          <img src="assets/logo-96.png" alt="" width="30" height="30">
+          Cognein
+        </a>
+        <p>An AI learning companion for professionals who need the skills now, not next quarter.</p>
+      </div>
+
+      <div>
+        <h4>Product</h4>
+        <nav aria-label="Product">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#industries">Industries</a>
+          <a href="https://app.cognein.com">Web app</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4>Get the app</h4>
+        <nav aria-label="Download">
+          <a href="https://apps.apple.com/us/app/evolve-ai/id6754223888" target="_blank" rel="noopener">iPhone — App Store</a>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:cognein@outlook.com">Support</a>
+        </nav>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <nav aria-label="Legal">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="mailto:cognein@outlook.com">Contact</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span data-year>2025</span> Cognein. All rights reserved.</p>
+      <p>Durham, North Carolina · <a href="mailto:cognein@outlook.com">cognein@outlook.com</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cognein.com/#organization",
+      "name": "Cognein",
+      "url": "https://cognein.com/",
+      "logo": "https://cognein.com/assets/icon-512.png",
+      "email": "cognein@outlook.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Durham",
+        "addressRegion": "NC",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cognein.com/#website",
+      "url": "https://cognein.com/",
+      "name": "Cognein",
+      "publisher": { "@id": "https://cognein.com/#organization" }
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Cognein",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "iOS",
+      "url": "https://apps.apple.com/us/app/evolve-ai/id6754223888",
+      "description": "An AI learning companion that turns job-critical AI skills into short daily lessons, personalised to your industry and role.",
+      "publisher": { "@id": "https://cognein.com/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Cognein free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Cognein is free to use — no credit card required to create an account and start a learning path." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which devices can I use it on?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cognein is available on iPhone through the App Store, and in any modern browser at app.cognein.com. An Android app is on the way." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much time does it take each day?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A daily session is designed to take about five minutes — one short lesson plus a few adaptive questions. You can always keep going if you have the time." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a technical background?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Cognein is written for professionals in every field, not just engineers. Lessons start from what your job requires and explain the concepts as they come up." }
+        },
+        {
+          "@type": "Question",
+          "name": "What powers the assessments?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Gemini generates adaptive questions based on the lesson you just completed and the areas you have found difficult, then gives instant feedback on each answer." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I get a certificate?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Completing a course generates a verifiable certificate you can share with your employer or add to your LinkedIn profile." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is my data handled?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We do not sell your personal information. Full detail on what we collect and why is in the Privacy Policy, and you can delete your account at any time from the app settings." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 
 </body>
 </html>
