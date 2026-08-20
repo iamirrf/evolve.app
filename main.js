@@ -395,26 +395,40 @@
     // JS; only once we can animate do we wind it back to zero.
     if (readout) readout.textContent = "0";
 
+    // Geometry is cached so the scroll handler never forces a layout read —
+    // measuring inside the loop was the other half of the stutter.
+    var docTop = 0;
+    var vh = window.innerHeight;
     var ticking = false;
 
-    function update() {
-      var rect = grid.getBoundingClientRect();
-      var vh = window.innerHeight;
-      // 0 when the grid's top reaches 85% of the viewport, 1 once it clears 35%.
-      var p = (vh * 0.85 - rect.top) / (vh * 0.5);
-      p = Math.max(0, Math.min(1, p));
+    function measure() {
+      docTop = grid.getBoundingClientRect().top + window.scrollY;
+      vh = window.innerHeight;
+    }
 
-      var want = Math.round(p * TOTAL);
-      if (want !== lit) {
-        if (want > lit) {
-          for (i = lit; i < want; i++) dots[i].classList.add("is-lit");
-        } else {
-          for (i = want; i < lit; i++) dots[i].classList.remove("is-lit");
-        }
-        lit = want;
-        if (readout) readout.textContent = String(Math.round(p * HOURS));
-      }
+    function update() {
       ticking = false;
+      var top = docTop - window.scrollY;
+      // Starts as the grid clears the fold and finishes within half a screen,
+      // so the fill keeps up with an ordinary scroll instead of trailing it.
+      var p = (vh * 0.95 - top) / (vh * 0.4);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+
+      var want = (p * TOTAL) | 0;
+      if (want === lit) return;
+
+      if (want > lit) {
+        for (i = lit; i < want; i++) dots[i].classList.add("is-lit");
+      } else {
+        for (i = want; i < lit; i++) dots[i].classList.remove("is-lit");
+      }
+      lit = want;
+      if (readout) readout.textContent = String(Math.round(p * HOURS));
+    }
+
+    function remeasure() {
+      measure();
+      update();
     }
 
     window.addEventListener(
@@ -427,8 +441,15 @@
       { passive: true }
     );
 
-    window.addEventListener("resize", update);
-    update();
+    window.addEventListener("resize", remeasure);
+    // Late webfonts reflow everything above the grid, so re-measure once
+    // they land rather than trusting the first-paint position.
+    window.addEventListener("load", remeasure);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(remeasure);
+    }
+
+    remeasure();
   }
 
   /* ======================================================================

@@ -643,6 +643,14 @@ section {
   animation: cue-fall 2.4s var(--ease) infinite;
 }
 
+/* On short viewports the cue crowds the buttons — drop it rather than
+   squeeze the hero. */
+@media (max-height: 820px) {
+  .scroll-cue {
+    display: none;
+  }
+}
+
 @keyframes cue-fall {
   0% {
     transform: translateY(-100%);
@@ -749,12 +757,14 @@ section {
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
-  transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  /* Only background-color animates. Transitioning box-shadow across 365
+     nodes was what made this stutter. */
+  transition: background-color 0.2s linear;
 }
 
 .math__dot.is-lit {
   background: var(--brand-500);
-  box-shadow: 0 0 8px rgba(0, 179, 255, 0.85);
+  box-shadow: 0 0 7px rgba(0, 179, 255, 0.8);
 }
 
 .math__readout {
@@ -1157,6 +1167,53 @@ section {
   transform: translateY(-2px);
 }
 
+/* Matches the App Store badge's geometry so the pair reads as a set:
+   same 48px height, same corner radius, same two-line lockup. */
+.web-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 48px;
+  padding: 0 0.9375rem 0 0.8125rem;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+.web-badge:hover {
+  transform: translateY(-2px);
+  background: #E8F5FF;
+}
+
+.web-badge svg {
+  width: 23px;
+  height: 23px;
+  flex: none;
+}
+
+.web-badge small,
+.web-badge strong {
+  display: block;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.web-badge small {
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 1;
+}
+
+.web-badge strong {
+  font-size: 17.5px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-top: 1px;
+}
+
 /* --------------------------------------------------------------------------
    18. Footer
    -------------------------------------------------------------------------- */
@@ -1464,8 +1521,14 @@ section {
   }
 
   .hero-cta .btn,
-  .hero-cta .store-badge {
+  .hero-cta .store-badge,
+  .hero-cta .web-badge {
     width: 100%;
+  }
+
+  .hero-cta .web-badge {
+    height: 52px;
+    justify-content: center;
   }
 
   .store-badge img {
